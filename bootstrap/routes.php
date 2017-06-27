@@ -9,7 +9,7 @@ use Nen\Router\Route;
 
 return new Groups(null, [
     new Group(null, [
-        new Route(IndexController::class, 'welcome', null, Request::METHOD_GET),
+        new Route(IndexController::class, 'main', null, Request::METHOD_GET),
     ]),
     new Group('api/1.0', [
         new Route(GameController::class, 'verify', 'verify', Request::METHOD_GET),

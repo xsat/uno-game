@@ -12,6 +12,6 @@ class IndexController extends BaseController
      */
     public function mainAction()
     {
-        $this->response->setContent('Welcome traveler...');
+        $this->response->setContent('Welcome gamer...');
     }
 }
