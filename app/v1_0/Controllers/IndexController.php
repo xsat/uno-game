@@ -10,7 +10,7 @@ class IndexController extends BaseController
     /**
      * Test content response
      */
-    public function welcomeAction()
+    public function mainAction()
     {
         $this->response->setContent('Welcome traveler...');
     }
