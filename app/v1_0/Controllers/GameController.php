@@ -8,13 +8,6 @@ namespace App\v1_0\Controllers;
 class GameController extends BaseController
 {
     /**
-     * Verify token
-     */
-    public function verifyAction()
-    {
-    }
-
-    /**
      * Check callback
      */
     public function callbackAction()
@@ -24,5 +17,11 @@ class GameController extends BaseController
         ) {
             $this->response->setContent($this->request->get('hub_challenge'));
         }
+
+        $file = __DIR__ . '/../../../public/log.txt';
+        ob_start();
+        $raw = file_get_contents('php://input');
+        var_dump(json_decode($raw, true));
+        file_put_contents($file, ob_get_clean());
     }
 }
