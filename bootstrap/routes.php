@@ -12,6 +12,7 @@ return new Groups(null, [
     new Group(null, [
         new Route(IndexController::class, 'main', null, Request::METHOD_GET),
         new Route(TestController::class, 'test', 'test', Request::METHOD_GET),
+        new Route(TestController::class, 'log', 'log', Request::METHOD_GET),
     ]),
     new Group('api/1.0', [
         new Route(GameController::class, 'callback', 'callback', Request::METHOD_GET),

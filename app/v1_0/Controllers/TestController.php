@@ -22,4 +22,10 @@ class TestController extends BaseController
             )
         );
     }
+
+    public function logAction()
+    {
+        $file = __DIR__ . '/../../../public/log.txt';
+        $this->response->setContent(file_get_contents($file));
+    }
 }

@@ -19,9 +19,6 @@ class GameController extends BaseController
         }
 
         $file = __DIR__ . '/../../../public/log.txt';
-        ob_start();
-        $raw = file_get_contents('php://input');
-        var_dump(json_decode($raw, true));
-        file_put_contents($file, ob_get_clean());
+        file_put_contents($file, file_get_contents('php://input'));
     }
 }
