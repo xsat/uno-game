@@ -26,8 +26,6 @@ class TestController extends BaseController
     public function logAction()
     {
         $file = PUBLIC_DIR . '/log.txt';
-        file_put_contents($file, 'hi');
-        $file = PUBLIC_DIR . '/log.txt';
         $this->response->setContent(file_get_contents($file));
     }
 }

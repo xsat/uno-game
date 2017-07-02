@@ -16,5 +16,8 @@ return new Groups(null, [
     ]),
     new Group('api/1.0', [
         new Route(GameController::class, 'callback', 'callback', Request::METHOD_GET),
+        new Route(GameController::class, 'callback', 'callback', Request::METHOD_PUT),
+        new Route(GameController::class, 'callback', 'callback', Request::METHOD_POST),
+        new Route(GameController::class, 'callback', 'callback', Request::METHOD_DELETE),
     ]),
 ]);
