@@ -2,6 +2,8 @@
 
 use Nen\Application;
 
+define('PUBLIC_DIR', __DIR__);
+
 /**
  * Create the application
  *
