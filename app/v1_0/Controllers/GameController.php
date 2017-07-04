@@ -17,8 +17,5 @@ class GameController extends BaseController
         ) {
             $this->response->setContent($this->request->get('hub_challenge'));
         }
-
-        $file = PUBLIC_DIR . '/log.txt';
-        file_put_contents($file, file_get_contents('php://input'));
     }
 }
