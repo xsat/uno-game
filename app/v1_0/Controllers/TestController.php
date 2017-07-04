@@ -13,19 +13,13 @@ class TestController extends BaseController
 {
     public function testAction()
     {
-        $api = new Api(getenv('TOKEN'));
+        $api = new Api(getenv('ACCESS_TOKEN'));
 
         $this->response->setJsonContent(
             $api->send(
-                new Id(getenv('ID')),
+                new Id(getenv('BOT_ID')),
                 new Text('Hello world')
             )
         );
-    }
-
-    public function logAction()
-    {
-        $file = PUBLIC_DIR . '/log.txt';
-        $this->response->setContent(file_get_contents($file));
     }
 }
