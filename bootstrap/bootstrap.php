@@ -7,10 +7,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 use Dotenv\Dotenv;
 
-$dir = __DIR__ . '/../';
+define('MAIN_DIR', __DIR__ . '/../');
+define('DATA_DIR', MAIN_DIR . 'data/');
 
-if (is_file($dir . '.env')) {
-    (new Dotenv($dir))->load();
+if (is_file(MAIN_DIR . '.env')) {
+    (new Dotenv(MAIN_DIR))->load();
 }
 
 return require __DIR__ . '/app.php';
