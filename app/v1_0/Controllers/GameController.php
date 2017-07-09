@@ -41,15 +41,15 @@ class GameController extends BaseController
             $this->response->setContent($this->request->get('hub_challenge'));
         }
 
-        (new App(
-            new ActionWrapper(
-                new NullAction()
-            ),
-            new GameWrapper(
-                new Game(
-                    new Api(getenv('ACCESS_TOKEN'))
-                )
-            )
-        ))->run();
+//        (new App(
+//            new ActionWrapper(
+//                new NullAction()
+//            ),
+//            new GameWrapper(
+//                new Game(
+//                    new Api(getenv('ACCESS_TOKEN'))
+//                )
+//            )
+//        ))->run();
     }
 }
