@@ -3,6 +3,8 @@
 namespace Common\Game;
 
 use Messenger\Api\ApiInterface;
+use Messenger\Api\Message\MessageInterface;
+use Messenger\Api\Recipient\Id;
 
 /**
  * Class Game
@@ -25,10 +27,12 @@ class Game implements GameInterface
     }
 
     /**
-     * @return ApiInterface
+     * @param MessageInterface $message
+     *
+     * @return array
      */
-    public function getMessenger(): ApiInterface
+    public function send(MessageInterface $message): array
     {
-        return $this->api;
+        return $this->api->send(new Id(getenv('BOT_ID')), $message);
     }
 }

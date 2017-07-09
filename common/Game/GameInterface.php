@@ -2,7 +2,7 @@
 
 namespace Common\Game;
 
-use Messenger\Api\ApiInterface;
+use Messenger\Api\Message\MessageInterface;
 
 /**
  * Interface GameInterface
@@ -10,7 +10,9 @@ use Messenger\Api\ApiInterface;
 interface GameInterface
 {
     /**
-     * @return ApiInterface
+     * @param MessageInterface $message
+     *
+     * @return array
      */
-    public function getMessenger(): ApiInterface;
+    public function send(MessageInterface $message): array;
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a87cfe345534e7916ba9c9be6ecf6b5b",
+    "content-hash": "be9773774df6c7b5c1aab9b2700e682a",
     "packages": [
         {
             "name": "vlucas/phpdotenv",
@@ -58,16 +58,16 @@
         },
         {
             "name": "xsat/messenger",
-            "version": "v0.1.0",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xsat/messenger.git",
-                "reference": "bdde04a9acb10d262f91da4362ae96b3a65f242e"
+                "reference": "b82f8ea74e87ef9f8a48391bbd0ff6c421320ef4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xsat/messenger/zipball/bdde04a9acb10d262f91da4362ae96b3a65f242e",
-                "reference": "bdde04a9acb10d262f91da4362ae96b3a65f242e",
+                "url": "https://api.github.com/repos/xsat/messenger/zipball/b82f8ea74e87ef9f8a48391bbd0ff6c421320ef4",
+                "reference": "b82f8ea74e87ef9f8a48391bbd0ff6c421320ef4",
                 "shasum": ""
             },
             "require": {
@@ -94,7 +94,7 @@
                 "issues": "https://github.com/xsat/messenger/issues?state=open",
                 "source": "https://github.com/xsat/messenger"
             },
-            "time": "2017-07-02T07:17:32+00:00"
+            "time": "2017-07-09T13:00:18+00:00"
         },
         {
             "name": "xsat/nen",

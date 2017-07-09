@@ -2,7 +2,7 @@
 
 namespace App\v1_0\Controllers;
 
-use Common\Action\Action;
+use Common\Action\NullAction;
 use Common\App;
 use Common\Game\Game;
 use Common\Loader\Action\ActionWrapper;
@@ -27,7 +27,7 @@ class GameController extends BaseController
 
         (new App(
             new ActionWrapper(
-                new Action()
+                new NullAction()
             ),
             new GameWrapper(
                 new Game(
