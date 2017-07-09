@@ -32,10 +32,7 @@ class GameController extends BaseController
         $logger->add('post.txt', ob_get_clean());
         ob_start();
         echo date('Y-m-d H:i:s'), "\r\n";
-        $raw = file_get_contents('php://input');
-        if (is_string($raw)) {
-            echo json_decode($raw, true);
-        }
+        echo file_get_contents('php://input');
         $logger->add('put.txt', ob_get_clean());
 
         if ($this->request->get('hub_mode') == 'subscribe' &&
