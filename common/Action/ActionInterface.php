@@ -2,7 +2,7 @@
 
 namespace Common\Action;
 
-use Common\Game\GameInterface;
+use Common\Bot\BotInterface;
 
 /**
  * Interface ActionInterface
@@ -10,7 +10,7 @@ use Common\Game\GameInterface;
 interface ActionInterface
 {
     /**
-     * @param GameInterface $game
+     * @param BotInterface $bot
      */
-    public function act(GameInterface $game): void;
+    public function act(BotInterface $bot): void;
 }
