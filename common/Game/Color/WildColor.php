@@ -8,10 +8,29 @@ namespace Common\Game\Color;
 class WildColor implements ColorInterface
 {
     /**
+     * @var ColorInterface
+     */
+    private $color;
+
+    /**
+     * WildColor constructor.
+     *
+     * @param ColorInterface|null $color
+     */
+    public function __construct(?ColorInterface $color = null)
+    {
+        $this->color = $color;
+    }
+
+    /**
      * @return string
      */
     public function getColor(): string
     {
-        return Color::WILD;
+        if (!$this->color) {
+            return Color::WILD;
+        }
+
+        return $this->color->getColor();
     }
 }
