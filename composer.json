@@ -11,6 +11,9 @@
     "xsat/messenger": "^0.2.2",
     "vlucas/phpdotenv": "*"
   },
+  "require-dev": {
+    "phpunit/phpunit": "^6.2"
+  },
   "repositories": [
     {
       "type": "vcs",

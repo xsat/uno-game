@@ -11,5 +11,5 @@ class Color
     public const GREEN = 'green';
     public const BLUE = 'blue';
     public const YELLOW = 'yellow';
-    public const WILD = 'wild';
+    public const NULL = 'null';
 }

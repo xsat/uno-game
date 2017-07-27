@@ -3,15 +3,15 @@
 namespace Common\Game\Rank;
 
 /**
- * Class WildRank
+ * Class NullRank
  */
-class WildRank implements RankInterface
+class NullRank implements RankInterface
 {
     /**
      * @return int
      */
     public function getRank(): int
     {
-        return 50;
+        return 0;
     }
 }
