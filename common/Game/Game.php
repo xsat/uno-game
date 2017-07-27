@@ -4,7 +4,6 @@ namespace Common\Game;
 
 use Common\Action\ActionInterface;
 use Common\Game\Card\CardInterface;
-use Common\Game\Card\DeckFactory;
 use Common\Game\Player\PlayerInterface;
 
 /**
@@ -18,7 +17,7 @@ class Game implements GameInterface
     private $players = [];
 
     /**
-     * @var CardInterface;
+     * @var CardInterface[];
      */
     private $cards = [];
 
@@ -32,11 +31,17 @@ class Game implements GameInterface
         $this->players = $players;
 
         $this->init();
+        $this->rand();
     }
 
     private function init(): void
     {
         $this->cards = (new DeckFactory($this->players))->create();
+    }
+
+    private function rand(): void
+    {
+        shuffle($this->cards);
     }
 
     /**

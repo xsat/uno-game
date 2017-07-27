@@ -3,15 +3,15 @@
 namespace Common\Game\Effect;
 
 /**
- * Class WildDrawFourEffect
+ * Class DrawEffect
  */
-class WildDrawFourEffect implements EffectInterface
+class DrawEffect implements EffectInterface
 {
     /**
      * @return string
      */
     public function getEffect(): string
     {
-        return Effect::WILD_DRAW_FOUR;
+        return Effect::DRAW;
     }
 }

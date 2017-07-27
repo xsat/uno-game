@@ -1,8 +1,6 @@
 <?php
 
-namespace Common\Game\Effect;
-
-use Common\Game\Type\DrawTwoEffect;
+namespace Common\Game\Type;
 
 /**
  * Class EffectFactory
@@ -14,9 +12,10 @@ class EffectFactory
      */
     private const EFFECTS = [
         Effect::SKIP => SkipEffect::class,
-        Effect::DRAW => DrawTwoEffect::class,
+        Effect::DRAW_TWO => DrawTwoEffect::class,
         Effect::REVERSE => ReverseEffect::class,
         Effect::WILD => WildEffect::class,
+        Effect::WILD_DRAW_FOUR => WildDrawFourEffect::class,
     ];
 
     /**

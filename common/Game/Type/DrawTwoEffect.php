@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Game\Effect;
+namespace Common\Game\Type;
 
 /**
  * Class DrawTwoEffect
