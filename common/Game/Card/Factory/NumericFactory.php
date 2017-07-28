@@ -7,6 +7,7 @@ use Common\Game\Card\CardInterface;
 use Common\Game\Color\ColorFactory;
 use Common\Game\Effect\NullEffect;
 use Common\Game\Rank\NumericRank;
+use Common\Game\Type\NullType;
 
 /**
  * Class NumericFactory
@@ -43,6 +44,7 @@ class NumericFactory implements FactoryInterface
         return new Card(
             (new ColorFactory($this->color))->create(),
             new NumericRank($this->number),
+            new NullType(),
             new NullEffect()
         );
     }

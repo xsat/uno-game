@@ -5,7 +5,7 @@ namespace Common\Game\Card\Factory;
 use Common\Game\Card\Card;
 use Common\Game\Card\CardInterface;
 use Common\Game\Color\ColorFactory;
-use Common\Game\Effect\EffectFactory;
+use Common\Game\Type\TypeFactory;
 use Common\Game\Rank\NullRank;
 
 /**
@@ -16,7 +16,7 @@ class SpecialFactory implements FactoryInterface
     /**
      * @var string
      */
-    private $effect;
+    private $type;
 
     /**
      * @var string
@@ -26,12 +26,12 @@ class SpecialFactory implements FactoryInterface
     /**
      * WildFactory constructor.
      *
-     * @param string $effect
+     * @param string $type
      * @param string $color
      */
-    public function __construct(string $effect, string $color)
+    public function __construct(string $type, string $color)
     {
-        $this->effect = $effect;
+        $this->type = $type;
         $this->color = $color;
     }
 
@@ -43,7 +43,7 @@ class SpecialFactory implements FactoryInterface
         return new Card(
             (new ColorFactory($this->color))->create(),
             new NullRank(),
-            (new EffectFactory($this->effect))->create()
+            (new TypeFactory($this->type))->create()
         );
     }
 }

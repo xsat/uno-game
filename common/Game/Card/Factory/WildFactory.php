@@ -6,6 +6,7 @@ use Common\Game\Card\Card;
 use Common\Game\Card\CardInterface;
 use Common\Game\Color\NullColor;
 use Common\Game\Effect\EffectFactory;
+use Common\Game\Type\TypeFactory;
 use Common\Game\Rank\NullRank;
 
 /**
@@ -16,16 +17,16 @@ class WildFactory implements FactoryInterface
     /**
      * @var string
      */
-    private $effect;
+    private $type;
 
     /**
      * WildFactory constructor.
      *
-     * @param string $effect
+     * @param string $type
      */
-    public function __construct(string $effect)
+    public function __construct(string $type)
     {
-        $this->effect = $effect;
+        $this->type = $type;
     }
 
     /**
@@ -36,7 +37,7 @@ class WildFactory implements FactoryInterface
         return new Card(
             new NullColor(),
             new NullRank(),
-            (new EffectFactory($this->effect))->create()
+            (new TypeFactory($this->type))->create()
         );
     }
 }

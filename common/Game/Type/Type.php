@@ -3,9 +3,9 @@
 namespace Common\Game\Type;
 
 /**
- * Class Effect
+ * Class Type
  */
-class Effect
+class Type
 {
     public const SKIP = 'skip';
     public const DRAW_TWO = 'draw_two';

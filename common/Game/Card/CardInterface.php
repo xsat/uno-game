@@ -5,6 +5,7 @@ namespace Common\Game\Card;
 use Common\Game\Color\ColorInterface;
 use Common\Game\Effect\EffectInterface;
 use Common\Game\Rank\RankInterface;
+use Common\Game\Type\TypeInterface;
 
 /**
  * Interface CardInterface
@@ -22,9 +23,14 @@ interface CardInterface
     public function getRank(): RankInterface;
 
     /**
-     * @return EffectInterface
+     * @return TypeInterface
      */
-    public function getEffect(): EffectInterface;
+    public function getType(): TypeInterface;
+
+    /**
+     * @return EffectInterface[]
+     */
+    public function getEffects(): array;
 
     /**
      * @param CardInterface $card
