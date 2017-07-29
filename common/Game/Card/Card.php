@@ -19,14 +19,14 @@ class Card implements CardInterface
     private $color;
 
     /**
-     * @var RankInterface
-     */
-    private $rank;
-
-    /**
      * @var TypeInterface
      */
     private $type;
+
+    /**
+     * @var RankInterface
+     */
+    private $rank;
 
     /**
      * @var EffectInterface[]
@@ -37,20 +37,20 @@ class Card implements CardInterface
      * Card constructor.
      *
      * @param ColorInterface $color
-     * @param RankInterface $rank
      * @param TypeInterface $type
+     * @param RankInterface $rank
      * @param EffectInterface[] $effects
      */
     public function __construct(
         ColorInterface $color,
-        RankInterface $rank,
         TypeInterface $type,
-        array $effects = []
+        RankInterface $rank,
+        array $effects
     )
     {
         $this->color = $color;
-        $this->rank = $rank;
         $this->type = $type;
+        $this->rank = $rank;
         $this->effects = $effects;
     }
 
@@ -63,19 +63,19 @@ class Card implements CardInterface
     }
 
     /**
-     * @return RankInterface
-     */
-    public function getRank(): RankInterface
-    {
-        return $this->rank;
-    }
-
-    /**
      * @return TypeInterface
      */
     public function getType(): TypeInterface
     {
         return $this->type;
+    }
+
+    /**
+     * @return RankInterface
+     */
+    public function getRank(): RankInterface
+    {
+        return $this->rank;
     }
 
     /**

@@ -2,13 +2,21 @@
 
 namespace Common\Game;
 
+use Common\Game\Card\CardFactory;
+use Common\Game\Card\CardFactoryInterface;
 use Common\Game\Card\CardInterface;
-use Common\Game\Card\Factory\NumericFactory;
-use Common\Game\Card\Factory\SpecialFactory;
-use Common\Game\Card\Factory\WildFactory;
 use Common\Game\Color\Color;
-use Common\Game\Effect\Effect;
+use Common\Game\Color\ColorFactory;
+use Common\Game\Color\ColorFactoryInterface;
+use Common\Game\Effect\EffectsFactoryInterface;
+use Common\Game\Effect\ManyPlayersFactory;
+use Common\Game\Effect\TwoPlayersFactory;
 use Common\Game\Player\PlayerInterface;
+use Common\Game\Rank\RankFactory;
+use Common\Game\Rank\RankFactoryInterface;
+use Common\Game\Type\Type;
+use Common\Game\Type\TypeFactory;
+use Common\Game\Type\TypeFactoryInterface;
 
 /**
  * Class DeckFactory
@@ -21,9 +29,9 @@ class DeckFactory
     private $cards = [];
 
     /**
-     * @var int
+     * @var CardFactoryInterface
      */
-    private $players_count;
+    private $cardFactory;
 
     /**
      * DeckFactory constructor.
@@ -32,7 +40,50 @@ class DeckFactory
      */
     public function __construct(array $players)
     {
-        $this->players_count = count($players);
+        $this->cardFactory = new CardFactory(
+            $this->createColorFactory(),
+            $this->createTypeFactory(),
+            $this->createRankFactory(),
+            $this->createEffectsFactory(count($players))
+        );
+    }
+
+    /**
+     * @return ColorFactoryInterface
+     */
+    private function createColorFactory(): ColorFactoryInterface
+    {
+        return new ColorFactory();
+    }
+
+    /**
+     * @return TypeFactoryInterface
+     */
+    private function createTypeFactory(): TypeFactoryInterface
+    {
+        return new TypeFactory();
+    }
+
+    /**
+     * @return RankFactoryInterface
+     */
+    private function createRankFactory(): RankFactoryInterface
+    {
+        return new RankFactory();
+    }
+
+    /**
+     * @param int $players_count
+     *
+     * @return EffectsFactoryInterface
+     */
+    private function createEffectsFactory(int $players_count): EffectsFactoryInterface
+    {
+        if ($players_count == 2) {
+            return new TwoPlayersFactory();
+        }
+
+        return new ManyPlayersFactory();
     }
 
     /**
@@ -44,48 +95,49 @@ class DeckFactory
         $this->appendWild();
         $this->appendWild();
         $this->appendWild();
-        $this->appendNumeric(0);
 
-        foreach (range(1, 9) as $number) {
-            $this->appendNumeric($number);
-            $this->appendNumeric($number);
+        $this->appendRanked(0);
+
+        foreach (range(1, 9) as $rank) {
+            $this->appendRanked($rank);
+            $this->appendRanked($rank);
         }
 
-        $this->appendSpecial(Effect::SKIP);
-        $this->appendSpecial(Effect::DRAW_TWO);
-        $this->appendSpecial(Effect::REVERSE);
-        $this->appendSpecial(Effect::SKIP);
-        $this->appendSpecial(Effect::DRAW_TWO);
-        $this->appendSpecial(Effect::REVERSE);
+        $this->appendSpecial(Type::SKIP);
+        $this->appendSpecial(Type::DRAW_TWO);
+        $this->appendSpecial(Type::REVERSE);
+        $this->appendSpecial(Type::SKIP);
+        $this->appendSpecial(Type::DRAW_TWO);
+        $this->appendSpecial(Type::REVERSE);
 
         return $this->cards;
     }
 
-    /**
-     * @param int $number
-     */
-    private function appendNumeric(int $number): void
-    {
-        $this->cards[] = (new NumericFactory($number, Color::RED))->create();
-        $this->cards[] = (new NumericFactory($number, Color::GREEN))->create();
-        $this->cards[] = (new NumericFactory($number, Color::BLUE))->create();
-        $this->cards[] = (new NumericFactory($number, Color::YELLOW))->create();
-    }
-
     private function appendWild(): void
     {
-        $this->cards[] = (new WildFactory(Effect::WILD))->create();
-        $this->cards[] = (new WildFactory(Effect::WILD_DRAW_FOUR))->create();
+        $this->cards[] = $this->cardFactory->create(null, Type::WILD, null);
+        $this->cards[] = $this->cardFactory->create(null, Type::WILD_DRAW_FOUR, null);
     }
 
     /**
-     * @param string $effect
+     * @param int $rank
      */
-    private function appendSpecial(string $effect): void
+    private function appendRanked(int $rank): void
     {
-        $this->cards[] = (new SpecialFactory($effect, Color::RED))->create();
-        $this->cards[] = (new SpecialFactory($effect, Color::GREEN))->create();
-        $this->cards[] = (new SpecialFactory($effect, Color::BLUE))->create();
-        $this->cards[] = (new SpecialFactory($effect, Color::YELLOW))->create();
+        $this->cards[] = $this->cardFactory->create(Color::RED, null, $rank);
+        $this->cards[] = $this->cardFactory->create(Color::GREEN, null, $rank);
+        $this->cards[] = $this->cardFactory->create(Color::BLUE, null, $rank);
+        $this->cards[] = $this->cardFactory->create(Color::YELLOW, null, $rank);
+    }
+
+    /**
+     * @param string $type
+     */
+    private function appendSpecial(string $type): void
+    {
+        $this->cards[] = $this->cardFactory->create(Color::RED, $type, null);
+        $this->cards[] = $this->cardFactory->create(Color::GREEN, $type, null);
+        $this->cards[] = $this->cardFactory->create(Color::BLUE, $type, null);
+        $this->cards[] = $this->cardFactory->create(Color::YELLOW, $type, null);
     }
 }

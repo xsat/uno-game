@@ -5,12 +5,12 @@ namespace Common\Game\Type;
 /**
  * Class TypeFactory
  */
-class TypeFactory
+class TypeFactory implements TypeFactoryInterface
 {
     /**
      * @var array
      */
-    private const TYPES = [
+    private $types = [
         Type::SKIP => SkipType::class,
         Type::DRAW_TWO => DrawTwoType::class,
         Type::REVERSE => ReverseType::class,
@@ -19,26 +19,14 @@ class TypeFactory
     ];
 
     /**
-     * @var string
-     */
-    private $type;
-
-    /**
-     * TypeFactory constructor.
+     * @param null|string $type
      *
-     * @param string $Type
-     */
-    public function __construct(string $Type)
-    {
-        $this->type = $Type;
-    }
-
-    /**
      * @return TypeInterface
      */
-    public function create(): TypeInterface
+    public function create(?string $type): TypeInterface
     {
-        $class = self::TYPES[$this->type] ?? NullType::class;
+        $class = $this->types[$type] ?? NullType::class;
+
         return new $class();
     }
 }

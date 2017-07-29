@@ -5,12 +5,12 @@ namespace Common\Game\Color;
 /**
  * Class ColorFactory
  */
-class ColorFactory
+class ColorFactory implements ColorFactoryInterface
 {
     /**
      * @var array
      */
-    private const COLORS = [
+    private $colors = [
         Color::RED => RedColor::class,
         Color::GREEN => GreenColor::class,
         Color::BLUE => BlueColor::class,
@@ -18,26 +18,14 @@ class ColorFactory
     ];
 
     /**
-     * @var string
-     */
-    private $color;
-
-    /**
-     * ColorFactory constructor.
+     * @param null|string $color
      *
-     * @param string $color
-     */
-    public function __construct(string $color)
-    {
-        $this->color = $color;
-    }
-
-    /**
      * @return ColorInterface
      */
-    public function create(): ColorInterface
+    public function create(?string $color): ColorInterface
     {
-        $class = self::COLORS[$this->color] ?? NullColor::class;
+        $class = $this->colors[$color] ?? NullColor::class;
+
         return new $class();
     }
 }
