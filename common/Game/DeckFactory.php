@@ -2,9 +2,10 @@
 
 namespace Common\Game;
 
+use Common\Game\Card\CardCollection;
+use Common\Game\Card\CardCollectionInterface;
 use Common\Game\Card\CardFactory;
 use Common\Game\Card\CardFactoryInterface;
-use Common\Game\Card\CardInterface;
 use Common\Game\Color\Color;
 use Common\Game\Color\ColorFactory;
 use Common\Game\Color\ColorFactoryInterface;
@@ -24,14 +25,19 @@ use Common\Game\Type\TypeFactoryInterface;
 class DeckFactory
 {
     /**
-     * @var CardInterface[]
+     * @var int
      */
-    private $cards = [];
+    private $id = 0;
 
     /**
      * @var CardFactoryInterface
      */
     private $cardFactory;
+
+    /**
+     * @var CardCollectionInterface
+     */
+    private $cardCollection;
 
     /**
      * DeckFactory constructor.
@@ -46,6 +52,8 @@ class DeckFactory
             $this->createRankFactory(),
             $this->createEffectsFactory(count($players))
         );
+
+        $this->cardCollection = new CardCollection();
     }
 
     /**
@@ -87,9 +95,9 @@ class DeckFactory
     }
 
     /**
-     * @return CardInterface[]
+     * @return CardCollectionInterface
      */
-    public function create(): array
+    public function create(): CardCollectionInterface
     {
         $this->appendWild();
         $this->appendWild();
@@ -110,13 +118,13 @@ class DeckFactory
         $this->appendSpecial(Type::DRAW_TWO);
         $this->appendSpecial(Type::REVERSE);
 
-        return $this->cards;
+        return $this->cardCollection;
     }
 
     private function appendWild(): void
     {
-        $this->cards[] = $this->cardFactory->create(null, Type::WILD, null);
-        $this->cards[] = $this->cardFactory->create(null, Type::WILD_DRAW_FOUR, null);
+        $this->cardCollection->push($this->cardFactory->create($this->id++, null, Type::WILD, null));
+        $this->cardCollection->push($this->cardFactory->create($this->id++, null, Type::WILD_DRAW_FOUR, null));
     }
 
     /**
@@ -124,10 +132,10 @@ class DeckFactory
      */
     private function appendRanked(int $rank): void
     {
-        $this->cards[] = $this->cardFactory->create(Color::RED, null, $rank);
-        $this->cards[] = $this->cardFactory->create(Color::GREEN, null, $rank);
-        $this->cards[] = $this->cardFactory->create(Color::BLUE, null, $rank);
-        $this->cards[] = $this->cardFactory->create(Color::YELLOW, null, $rank);
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::RED, null, $rank));
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::GREEN, null, $rank));
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::BLUE, null, $rank));
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::YELLOW, null, $rank));
     }
 
     /**
@@ -135,9 +143,9 @@ class DeckFactory
      */
     private function appendSpecial(string $type): void
     {
-        $this->cards[] = $this->cardFactory->create(Color::RED, $type, null);
-        $this->cards[] = $this->cardFactory->create(Color::GREEN, $type, null);
-        $this->cards[] = $this->cardFactory->create(Color::BLUE, $type, null);
-        $this->cards[] = $this->cardFactory->create(Color::YELLOW, $type, null);
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::RED, $type, null));
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::GREEN, $type, null));
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::BLUE, $type, null));
+        $this->cardCollection->push($this->cardFactory->create($this->id++, Color::YELLOW, $type, null));
     }
 }

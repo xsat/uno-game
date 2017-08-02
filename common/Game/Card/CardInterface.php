@@ -4,6 +4,7 @@ namespace Common\Game\Card;
 
 use Common\Game\Color\ColorInterface;
 use Common\Game\Effect\EffectInterface;
+use Common\Game\Id\IdInterface;
 use Common\Game\Rank\RankInterface;
 use Common\Game\Type\TypeInterface;
 
@@ -12,6 +13,11 @@ use Common\Game\Type\TypeInterface;
  */
 interface CardInterface
 {
+    /**
+     * @return IdInterface
+     */
+    public function getId(): IdInterface;
+
     /**
      * @return ColorInterface
      */

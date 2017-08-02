@@ -8,6 +8,7 @@ namespace Common\Game\Card;
 interface CardFactoryInterface
 {
     /**
+     * @param int $id
      * @param null|string $color
      * @param null|string $type
      * @param int|null $rank
@@ -15,6 +16,7 @@ interface CardFactoryInterface
      * @return CardInterface
      */
     public function create(
+        int $id,
         ?string $color,
         ?string $type,
         ?int $rank

@@ -2,9 +2,9 @@
 
 namespace Common\Game;
 
-use Common\Action\ActionInterface;
-use Common\Game\Card\CardInterface;
-use Common\Game\Player\PlayerInterface;
+use Common\Game\Action\ActionInterface;
+use Common\Game\Card\CardCollectionInterface;
+use Common\Game\Player\PlayerCollectionInterface;
 
 /**
  * Class Game
@@ -12,36 +12,28 @@ use Common\Game\Player\PlayerInterface;
 class Game implements GameInterface
 {
     /**
-     * @var PlayerInterface[]
+     * @var PlayerCollectionInterface
      */
-    private $players = [];
+    private $playerCollection;
 
     /**
-     * @var CardInterface[];
+     * @var CardCollectionInterface
      */
-    private $cards = [];
+    private $cardCollection;
 
     /**
      * Game constructor.
      *
-     * @param PlayerInterface[] $players
+     * @param PlayerCollectionInterface $playerCollection
+     * @param CardCollectionInterface $cardCollection
      */
-    public function __construct(array $players)
+    public function __construct(
+        PlayerCollectionInterface $playerCollection,
+        CardCollectionInterface $cardCollection
+    )
     {
-        $this->players = $players;
-
-        $this->init();
-        $this->rand();
-    }
-
-    private function init(): void
-    {
-        $this->cards = (new DeckFactory($this->players))->create();
-    }
-
-    private function rand(): void
-    {
-        shuffle($this->cards);
+        $this->playerCollection = $playerCollection;
+        $this->cardCollection = $cardCollection;
     }
 
     /**
@@ -49,6 +41,6 @@ class Game implements GameInterface
      */
     public function act(ActionInterface $action): void
     {
-
+        $action->act($this);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Common\Game;
 
-use Common\Action\ActionInterface;
+use Common\Game\Action\ActionInterface;
 
 /**
  * Interface GameInterface

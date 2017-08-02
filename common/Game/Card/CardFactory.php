@@ -4,6 +4,7 @@ namespace Common\Game\Card;
 
 use Common\Game\Color\ColorFactoryInterface;
 use Common\Game\Effect\EffectsFactoryInterface;
+use Common\Game\Id\Id;
 use Common\Game\Rank\RankFactoryInterface;
 use Common\Game\Type\TypeFactoryInterface;
 
@@ -54,6 +55,7 @@ class CardFactory implements CardFactoryInterface
     }
 
     /**
+     * @param int $id
      * @param null|string $color
      * @param null|string $type
      * @param int|null $rank
@@ -61,13 +63,15 @@ class CardFactory implements CardFactoryInterface
      * @return CardInterface
      */
     public function create(
+        int $id,
         ?string $color,
         ?string $type,
         ?int $rank
     ): CardInterface
     {
         return new Card(
-            $this->coloFactory->create($color),
+            new Id($id),
+            $this->coloFactory->create($type),
             $this->typeFactory->create($type),
             $this->rankFactory->create($rank),
             $this->effectsFactory->create($type)
