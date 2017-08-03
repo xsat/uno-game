@@ -68,4 +68,12 @@ class PlayerCollection implements PlayerCollectionInterface
     {
         return $this->players;
     }
+
+    /**
+     * @return int
+     */
+    public function getCount(): int
+    {
+        return count($this->players);
+    }
 }

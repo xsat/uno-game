@@ -12,7 +12,7 @@ use Common\Game\Color\ColorFactoryInterface;
 use Common\Game\Effect\EffectsFactoryInterface;
 use Common\Game\Effect\ManyPlayersFactory;
 use Common\Game\Effect\TwoPlayersFactory;
-use Common\Game\Player\PlayerInterface;
+use Common\Game\Player\PlayerCollectionInterface;
 use Common\Game\Rank\RankFactory;
 use Common\Game\Rank\RankFactoryInterface;
 use Common\Game\Type\Type;
@@ -42,15 +42,15 @@ class DeckFactory
     /**
      * DeckFactory constructor.
      *
-     * @param PlayerInterface[] $players
+     * @param PlayerCollectionInterface $playerCollection
      */
-    public function __construct(array $players)
+    public function __construct(PlayerCollectionInterface $playerCollection)
     {
         $this->cardFactory = new CardFactory(
             $this->createColorFactory(),
             $this->createTypeFactory(),
             $this->createRankFactory(),
-            $this->createEffectsFactory(count($players))
+            $this->createEffectsFactory($playerCollection->getCount())
         );
 
         $this->cardCollection = new CardCollection();

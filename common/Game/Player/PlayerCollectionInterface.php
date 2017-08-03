@@ -31,4 +31,9 @@ interface PlayerCollectionInterface
      * @return PlayerInterface[]
      */
     public function getCollection(): array;
+
+    /**
+     * @return int
+     */
+    public function getCount(): int;
 }
