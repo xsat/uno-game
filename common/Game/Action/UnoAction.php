@@ -11,8 +11,11 @@ class UnoAction implements ActionInterface
 {
     /**
      * @param GameInterface $game
+     *
+     * @throws ActionException
      */
     public function act(GameInterface $game): void
     {
+        throw new ActionException();
     }
 }

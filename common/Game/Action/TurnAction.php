@@ -2,9 +2,11 @@
 
 namespace Common\Game\Action;
 
+use Common\Game\Card\CardException;
 use Common\Game\GameInterface;
-use Common\Game\Id\IdInterface;
 use Common\Game\Helper\CardHelper;
+use Common\Game\Id\IdInterface;
+use Common\Game\Player\PlayerException;
 
 /**
  * Class TurnAction
@@ -35,23 +37,26 @@ class TurnAction implements ActionInterface
 
     /**
      * @param GameInterface $game
+     *
+     * @throws PlayerException
+     * @throws CardException
      */
     public function act(GameInterface $game): void
     {
         $activePlayer = $game->getActivePlayer();
 
         if ($activePlayer->getId()->getId() != $this->playerId->getId()) {
-            return;
+            throw new PlayerException();
         }
 
         $chosenCard = $activePlayer->getCardCollection()->get($this->cardId);
 
         if (!$chosenCard) {
-            return;
+            throw new CardException();
         }
 
         if (!CardHelper::isMatch($game->getActiveCard(), $chosenCard)) {
-            return;
+            throw new CardException();
         }
 
         $game->getCardCollection()->push($game->getActiveCard());
