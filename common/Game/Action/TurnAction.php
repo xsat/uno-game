@@ -46,17 +46,17 @@ class TurnAction implements ActionInterface
         $activePlayer = $game->getActivePlayer();
 
         if ($activePlayer->getId()->getId() != $this->playerId->getId()) {
-            throw new PlayerException();
+            throw new PlayerException('It\'s not your turn.');
         }
 
         $chosenCard = $activePlayer->getCardCollection()->get($this->cardId);
 
         if (!$chosenCard) {
-            throw new CardException();
+            throw new CardException('You don\'t have this card in your deck.');
         }
 
         if (!CardHelper::isMatch($game->getActiveCard(), $chosenCard)) {
-            throw new CardException();
+            throw new CardException('You can\'t play this card.');
         }
 
         $game->getCardCollection()->push($game->getActiveCard());

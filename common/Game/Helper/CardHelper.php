@@ -21,21 +21,9 @@ class CardHelper
         CardInterface $second
     ): bool
     {
-//        if ($first->getColor()->getColor() == Color::WILD) {
-//            return true;
-//        }
-//
-//        if ($first->getColor()->getColor() == $second->getColor()->getColor()) {
-//            return true;
-//        }
-//
-//        if ($first->getRank()->getRank() == $second->getRank()->getRank()) {
-//            return true;
-//        }
-//
-//        if ($first->getEffect()->getEffect() == $second->getEffect()->getEffect()) {
-//            return true;
-//        }
+        if ($first->getColor()->getColor() == $second->getColor()->getColor() && $second->getColor()->getColor() != Color::NULL) {
+            return true;
+        }
 
         return false;
     }
