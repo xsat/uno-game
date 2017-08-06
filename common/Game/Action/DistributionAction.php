@@ -19,7 +19,14 @@ class DistributionAction implements ActionInterface
         foreach ($game->getPlayerCollection()->getCollection() as $player) {
             $player_cards = 0;
 
-//            foreach ()
+            foreach ($game->getCardCollection()->getCollection() as $card) {
+                if ($player_cards++ >= self::CARD_LIMIT) {
+                    break;
+                }
+
+                $player->getCardCollection()->push($card);
+                $game->getCardCollection()->pad($card->getId());
+            }
         }
     }
 }

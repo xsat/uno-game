@@ -14,6 +14,6 @@ class RankFactory implements RankFactoryInterface
      */
     public function create(?int $rank): RankInterface
     {
-        return $rank ? new NullRank($rank) : new NullRank();
+        return $rank ? new NumericRank($rank) : new NullRank();
     }
 }

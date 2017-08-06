@@ -71,7 +71,7 @@ class CardFactory implements CardFactoryInterface
     {
         return new Card(
             new Id($id),
-            $this->coloFactory->create($type),
+            $this->coloFactory->create($color),
             $this->typeFactory->create($type),
             $this->rankFactory->create($rank),
             $this->effectsFactory->create($type)
