@@ -14,5 +14,7 @@ class StartAction implements ActionInterface
      */
     public function act(GameInterface $game): void
     {
+        $game->getCardCollection()->rand();
+        $game->getPlayerCollection()->rand();
     }
 }

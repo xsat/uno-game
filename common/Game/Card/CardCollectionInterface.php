@@ -27,7 +27,23 @@ interface CardCollectionInterface
     public function get(IdInterface $id): ?CardInterface;
 
     /**
+     * @param IdInterface $id
+     *
+     * @return CardInterface|null
+     */
+    public function next(IdInterface $id): ?CardInterface;
+
+    /**
+     * @param IdInterface $id
+     *
+     * @return CardInterface|null
+     */
+    public function prev(IdInterface $id): ?CardInterface;
+
+    /**
      * @return CardInterface[]
      */
     public function getCollection(): array;
+
+    public function rand(): void;
 }

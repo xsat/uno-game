@@ -62,6 +62,32 @@ class PlayerCollection implements PlayerCollectionInterface
     }
 
     /**
+     * @param IdInterface $id
+     *
+     * @return PlayerInterface|null
+     */
+    public function next(IdInterface $id): ?PlayerInterface
+    {
+        $players = array_values($this->players);
+        $player_key = array_search($this->get($id), $players);
+
+        return $players[++$player_key] ?? null;
+    }
+
+    /**
+     * @param IdInterface $id
+     *
+     * @return PlayerInterface|null
+     */
+    public function prev(IdInterface $id): ?PlayerInterface
+    {
+        $players = array_values($this->players);
+        $player_key = array_search($this->get($id), $players);
+
+        return $players[--$player_key] ?? null;
+    }
+
+    /**
      * @return PlayerInterface[]
      */
     public function getCollection(): array
@@ -75,5 +101,9 @@ class PlayerCollection implements PlayerCollectionInterface
     public function getCount(): int
     {
         return count($this->players);
+    }
+
+    public function rand(): void {
+        shuffle($this->players);
     }
 }

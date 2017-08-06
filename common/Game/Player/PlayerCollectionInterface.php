@@ -28,6 +28,20 @@ interface PlayerCollectionInterface
     public function get(IdInterface $id): ?PlayerInterface;
 
     /**
+     * @param IdInterface $id
+     *
+     * @return PlayerInterface|null
+     */
+    public function next(IdInterface $id): ?PlayerInterface;
+
+    /**
+     * @param IdInterface $id
+     *
+     * @return PlayerInterface|null
+     */
+    public function prev(IdInterface $id): ?PlayerInterface;
+
+    /**
      * @return PlayerInterface[]
      */
     public function getCollection(): array;
@@ -36,4 +50,6 @@ interface PlayerCollectionInterface
      * @return int
      */
     public function getCount(): int;
+
+    public function rand(): void;
 }

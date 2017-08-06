@@ -62,10 +62,41 @@ class CardCollection implements CardCollectionInterface
     }
 
     /**
+     * @param IdInterface $id
+     *
+     * @return CardInterface|null
+     */
+    public function next(IdInterface $id): ?CardInterface
+    {
+        $players = array_values($this->cards);
+        $player_key = array_search($this->get($id), $players);
+
+        return $players[++$player_key] ?? null;
+    }
+
+    /**
+     * @param IdInterface $id
+     *
+     * @return CardInterface|null
+     */
+    public function prev(IdInterface $id): ?CardInterface
+    {
+        $players = array_values($this->cards);
+        $player_key = array_search($this->get($id), $players);
+
+        return $players[--$player_key] ?? null;
+    }
+
+    /**
      * @return CardInterface[]
      */
     public function getCollection(): array
     {
         return $this->cards;
+    }
+
+    public function rand(): void
+    {
+        shuffle($this->cards);
     }
 }

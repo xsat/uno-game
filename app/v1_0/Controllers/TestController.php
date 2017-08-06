@@ -2,6 +2,8 @@
 
 namespace App\v1_0\Controllers;
 
+use Common\Game\Action\DistributionAction;
+use Common\Game\Action\StartAction;
 use Common\Game\Card\Card;
 use Common\Game\Card\CardCollection;
 use Common\Game\DeckFactory;
@@ -25,9 +27,21 @@ class TestController extends BaseController
     public function testAction()
     {
         $players = new PlayerCollection();
-        $players->push(new Player(new Id(0), new CardCollection()));
-        $players->push(new Player(new Id(0), new CardCollection()));
+        $id = 1;
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
+        $players->push(new Player(new Id($id++), new CardCollection()));
         $game = new Game($players, (new DeckFactory($players))->create());
+
+        $game->act(new StartAction());
+        $game->act(new DistributionAction());
 
         var_dump($game);
         exit;
