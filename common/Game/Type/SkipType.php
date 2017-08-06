@@ -14,4 +14,11 @@ class SkipType implements TypeInterface
     {
         return Type::SKIP;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial(): bool {
+        return true;
+    }
 }

@@ -14,4 +14,11 @@ class WildType implements TypeInterface
     {
         return Type::WILD;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial(): bool {
+        return true;
+    }
 }

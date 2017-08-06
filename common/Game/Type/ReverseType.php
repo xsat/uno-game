@@ -14,4 +14,11 @@ class ReverseType implements TypeInterface
     {
         return Type::REVERSE;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial(): bool {
+        return true;
+    }
 }

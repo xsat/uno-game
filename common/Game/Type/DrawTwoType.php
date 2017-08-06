@@ -14,4 +14,11 @@ class DrawTwoType implements TypeInterface
     {
         return Type::DRAW_TWO;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial(): bool {
+        return true;
+    }
 }

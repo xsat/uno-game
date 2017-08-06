@@ -4,6 +4,7 @@ namespace Common\Game;
 
 use Common\Game\Action\ActionInterface;
 use Common\Game\Card\CardCollectionInterface;
+use Common\Game\Card\CardInterface;
 use Common\Game\Player\PlayerCollectionInterface;
 use Common\Game\Player\PlayerInterface;
 
@@ -36,4 +37,14 @@ interface GameInterface
      * @param PlayerInterface|null $player
      */
     public function setActivePlayer(?PlayerInterface $player): void;
+
+    /**
+     * @return CardInterface|null
+     */
+    public function getActiveCard(): ?CardInterface;
+
+    /**
+     * @param CardInterface|null $card
+     */
+    public function setActiveCard(?CardInterface $card): void;
 }

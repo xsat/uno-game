@@ -14,4 +14,11 @@ class NullType implements TypeInterface
     {
         return Type::NULL;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial(): bool {
+        return false;
+    }
 }

@@ -14,4 +14,11 @@ class WildDrawFourType implements TypeInterface
     {
         return Type::WILD_DRAW_FOUR;
     }
+
+    /**
+     * @return bool
+     */
+    public function isSpecial(): bool {
+        return true;
+    }
 }
